@@ -1,0 +1,1 @@
+streamlit run "/home/Sohan/codes/ML/MultipleDiseasePrediction/multiple disease pred.py"
