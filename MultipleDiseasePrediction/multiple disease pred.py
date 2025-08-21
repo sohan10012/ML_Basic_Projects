@@ -8,15 +8,21 @@ Created on Sun May 22 11:53:51 2022
 import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
+from pathlib import Path
 
 
 # loading the saved models
 
-diabetes_model = pickle.load(open('diabetes_model.sav', 'rb'))
+MODEL_DIR = Path(__file__).resolve().parent
 
-heart_disease_model = pickle.load(open('heart_disease_model.sav','rb'))
+with open(MODEL_DIR / 'diabetes_model.sav', 'rb') as f:
+    diabetes_model = pickle.load(f)
 
-parkinsons_model = pickle.load(open('parkinsons_model.sav', 'rb'))
+with open(MODEL_DIR / 'heart_disease_model.sav', 'rb') as f:
+    heart_disease_model = pickle.load(f)
+
+with open(MODEL_DIR / 'parkinsons_model.sav', 'rb') as f:
+    parkinsons_model = pickle.load(f)
 
 
 
