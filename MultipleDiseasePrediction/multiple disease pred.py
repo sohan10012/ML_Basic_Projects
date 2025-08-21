@@ -15,14 +15,24 @@ from pathlib import Path
 
 MODEL_DIR = Path(__file__).resolve().parent
 
-with open(MODEL_DIR / 'diabetes_model.sav', 'rb') as f:
-    diabetes_model = pickle.load(f)
+def load_pickle_model(file_name: str):
+    model_path = MODEL_DIR / file_name
+    if not model_path.exists():
+        st.error(f"Model file not found: {model_path}")
+        st.stop()
+    try:
+        with open(model_path, 'rb') as f:
+            return pickle.load(f)
+    except Exception as exc:
+        st.error(f"Failed to load model '{file_name}': {exc}")
+        st.stop()
 
-with open(MODEL_DIR / 'heart_disease_model.sav', 'rb') as f:
-    heart_disease_model = pickle.load(f)
 
-with open(MODEL_DIR / 'parkinsons_model.sav', 'rb') as f:
-    parkinsons_model = pickle.load(f)
+diabetes_model = load_pickle_model('diabetes_model.sav')
+
+heart_disease_model = load_pickle_model('heart_disease_model.sav')
+
+parkinsons_model = load_pickle_model('parkinsons_model.sav')
 
 
 
